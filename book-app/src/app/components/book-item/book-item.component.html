@@ -1,1 +1,5 @@
-<p>book-item works!</p>
+<div>
+    <span>{{ book.author }} - {{ book.name }}</span>
+    <button (click)="edit.emit(book)">Edit</button>
+    <button (click)="remove.emit(book)">Remove</button>
+</div>

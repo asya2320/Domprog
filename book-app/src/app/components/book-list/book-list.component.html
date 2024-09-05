@@ -1,1 +1,20 @@
-<p>book-list works!</p>
+<div>
+    <button (click)="openModal()">Add Book</button>
+    <ul>
+        <li *ngFor="let book of books$ | async">
+            <app-book-item
+                [book]="book"
+                (edit)="openModal(book)"
+                (remove)="removeBook(book)"
+            ></app-book-item>
+        </li>
+    </ul>
+</div>
+
+<app-book-form
+    *ngIf="isModalOpen"
+    [book]="selectedBook || { author: '', name: '', year: 0, pages: 0 }"
+    [isNew]="!selectedBook"
+    (close)="closeModal()"
+    (save)="saveBook($event)"
+></app-book-form>

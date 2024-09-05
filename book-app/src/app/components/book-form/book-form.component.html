@@ -1,1 +1,27 @@
-<p>book-form works!</p>
+<div>
+    <form (ngSubmit)="onSubmit()">
+        <label>
+            Author:
+            <input [(ngModel)]="book.author" name="author" required />
+        </label>
+        <label>
+            Title:
+            <input [(ngModel)]="book.name" name="name" required />
+        </label>
+        <label>
+            Year:
+            <input [(ngModel)]="book.year" name="year" type="number" required />
+        </label>
+        <label>
+            Pages:
+            <input
+                [(ngModel)]="book.pages"
+                name="pages"
+                type="number"
+                required
+            />
+        </label>
+        <button type="submit">Save</button>
+        <button type="button" (click)="close.emit()">Cancel</button>
+    </form>
+</div>
