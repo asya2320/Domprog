@@ -1,5 +1,27 @@
-<div>
-    <span>{{ book.author }} - {{ book.name }}</span>
-    <button (click)="edit.emit(book)">Edit</button>
-    <button (click)="remove.emit(book)">Remove</button>
-</div>
+<mat-card class="book-card">
+    <mat-card-header class="book-card__header">
+        <mat-card-title class="book-card__title">{{
+            book.name
+        }}</mat-card-title>
+        <mat-card-subtitle class="book-card__subtitle">{{
+            book.author
+        }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-actions class="book-card__actions">
+        <button
+            mat-button
+            class="book-card__edit-button"
+            (click)="edit.emit(book)"
+        >
+            Редактировать
+        </button>
+        <button
+            mat-button
+            class="book-card__delete-button"
+            (click)="remove.emit(book)"
+        >
+            Удалить
+        </button>
+    </mat-card-actions>
+</mat-card>

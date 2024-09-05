@@ -1,7 +1,14 @@
-<div>
-    <button (click)="openModal()">Add Book</button>
-    <ul>
-        <li *ngFor="let book of books$ | async">
+<div class="books">
+    <button
+        class="books__button"
+        color="secondary"
+        mat-button
+        (click)="openModal()"
+    >
+        Новая книга
+    </button>
+    <ul class="books__list">
+        <li class="books__item" *ngFor="let book of books$ | async">
             <app-book-item
                 [book]="book"
                 (edit)="openModal(book)"

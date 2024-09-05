@@ -1,27 +1,68 @@
-<div>
-    <form (ngSubmit)="onSubmit()">
-        <label>
-            Author:
-            <input [(ngModel)]="book.author" name="author" required />
-        </label>
-        <label>
-            Title:
-            <input [(ngModel)]="book.name" name="name" required />
-        </label>
-        <label>
-            Year:
-            <input [(ngModel)]="book.year" name="year" type="number" required />
-        </label>
-        <label>
-            Pages:
+<div class="form-container">
+    <form (ngSubmit)="onSubmit()" class="form">
+        <mat-form-field class="form-field" appearance="outline">
+            <mat-label class="form-label">Автор</mat-label>
             <input
-                [(ngModel)]="book.pages"
-                name="pages"
-                type="number"
+                matInput
+                [(ngModel)]="book.author"
+                name="author"
                 required
+                class="form-input"
             />
-        </label>
-        <button type="submit">Save</button>
-        <button type="button" (click)="close.emit()">Cancel</button>
+        </mat-form-field>
+        <mat-form-field class="form-field" appearance="outline">
+            <mat-label class="form-label">Название</mat-label>
+            <input
+                matInput
+                [(ngModel)]="book.name"
+                name="name"
+                required
+                class="form-input"
+            />
+        </mat-form-field>
+        <div class="form-num">
+            <mat-form-field class="form-field" appearance="outline">
+                <mat-label class="form-label">Год</mat-label>
+                <input
+                    matInput
+                    [(ngModel)]="book.year"
+                    name="year"
+                    type="number"
+                    required
+                    class="form-input"
+                />
+            </mat-form-field>
+            <mat-form-field class="form-field" appearance="outline">
+                <mat-label class="form-label">Кол-во страниц</mat-label>
+                <input
+                    matInput
+                    [(ngModel)]="book.pages"
+                    name="pages"
+                    type="number"
+                    required
+                    class="form-input"
+                />
+            </mat-form-field>
+        </div>
+
+        <div class="form-buttons">
+            <button
+                color="primary"
+                mat-raised-button
+                type="submit"
+                class="form-button"
+            >
+                Сохранить
+            </button>
+            <button
+                mat-raised-button
+                type="button"
+                color="warn"
+                (click)="close.emit()"
+                class="form-button"
+            >
+                Отмена
+            </button>
+        </div>
     </form>
 </div>
