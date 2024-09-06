@@ -1,5 +1,5 @@
 <div class="form-container">
-    <form (ngSubmit)="onSubmit()" class="form">
+    <form (ngSubmit)="onSubmit()" class="form" #bookForm="ngForm">
         <mat-form-field class="form-field" appearance="outline">
             <mat-label class="form-label">Автор</mat-label>
             <input
@@ -7,8 +7,20 @@
                 [(ngModel)]="book.author"
                 name="author"
                 required
+                minlength="3"
+                maxlength="100"
                 class="form-input"
+                #author="ngModel"
             />
+            <mat-error *ngIf="author.errors?.required"
+                >Автор обязателен</mat-error
+            >
+            <mat-error *ngIf="author.errors?.minlength"
+                >Минимум 3 символа</mat-error
+            >
+            <mat-error *ngIf="author.errors?.maxlength"
+                >Не больше 100 символов</mat-error
+            >
         </mat-form-field>
         <mat-form-field class="form-field" appearance="outline">
             <mat-label class="form-label">Название</mat-label>
@@ -17,8 +29,20 @@
                 [(ngModel)]="book.name"
                 name="name"
                 required
+                minlength="3"
+                maxlength="200"
                 class="form-input"
+                #name="ngModel"
             />
+            <mat-error *ngIf="name.errors?.required"
+                >Название обязательно</mat-error
+            >
+            <mat-error *ngIf="name.errors?.minlength"
+                >Минимум 3 символа</mat-error
+            >
+            <mat-error *ngIf="name.errors?.maxlength"
+                >Не больше 200 символов</mat-error
+            >
         </mat-form-field>
         <div class="form-num">
             <mat-form-field class="form-field" appearance="outline">
@@ -29,8 +53,20 @@
                     name="year"
                     type="number"
                     required
+                    min="1"
+                    max="2024"
                     class="form-input"
+                    #year="ngModel"
                 />
+                <mat-error *ngIf="year.errors?.required"
+                    >Год обязателен</mat-error
+                >
+                <mat-error *ngIf="year.errors?.min"
+                    >Не может быть отрицательным</mat-error
+                >
+                <mat-error *ngIf="year.errors?.max"
+                    >Не может превышать настоящий</mat-error
+                >
             </mat-form-field>
             <mat-form-field class="form-field" appearance="outline">
                 <mat-label class="form-label">Кол-во страниц</mat-label>
@@ -40,17 +76,25 @@
                     name="pages"
                     type="number"
                     required
+                    min="1"
                     class="form-input"
+                    #pages="ngModel"
                 />
+                <mat-error *ngIf="pages.errors?.required"
+                    >Кол-во страниц обязательно</mat-error
+                >
+                <mat-error *ngIf="pages.errors?.min"
+                    >Минимум одна страница</mat-error
+                >
             </mat-form-field>
         </div>
-
         <div class="form-buttons">
             <button
                 color="primary"
                 mat-raised-button
                 type="submit"
                 class="form-button"
+                [disabled]="!bookForm.valid"
             >
                 Сохранить
             </button>
